@@ -344,7 +344,7 @@ class qte
 
 		if (!$s_edit && $attribute_id != self::DELETE || !$s_delete && $attribute_id == self::DELETE)
 		{
-			return;
+			trigger_error($this->language->lang('NOT_AUTHORISED'));
 		}
 
 		// Default values

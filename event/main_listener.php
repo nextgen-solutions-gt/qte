@@ -90,6 +90,7 @@ class main_listener implements EventSubscriberInterface
 			'core.user_setup'	=> 'user_setup',
 			'core.permissions'	=> 'add_permissions',
 
+			'core.display_forums_modify_forum_rows'		=> 'display_forums_modify_forum_rows',
 			'core.display_forums_modify_row'			=> 'display_forums_modify_row',
 			'core.display_forums_modify_sql'			=> 'display_forums_modify_sql',
 			'core.display_forums_modify_template_vars'	=> 'display_forums_modify_template_vars',
@@ -194,6 +195,27 @@ class main_listener implements EventSubscriberInterface
 		{
 			$event->update_subarray('permissions', 'f_qte_attr_' . $attr['attr_id'], ['lang' => $this->language->lang('QTE_CAN_USE_ATTR', $attr['attr_name']), 'cat' => 'qte']);
 		}
+	}
+
+	public function display_forums_modify_forum_rows($event)
+	{
+		$forum_rows = $event['forum_rows'];
+		$parent_id = $event['parent_id'];
+		$row = $event['row'];
+
+		// Suggested by the core, equal post times should never happen. Check it just in case.
+		if ($row['forum_last_post_time'] >= $forum_rows[$parent_id]['forum_last_post_time'])
+		{
+			$forum_rows[$parent_id]['topic_attr_id'] = $row['topic_attr_id'];
+
+			// Is topic_attr_id not null?
+			if ($forum_rows[$parent_id]['topic_attr_id'] !== false)
+			{
+				$forum_rows[$parent_id]['topic_attr_id'] = $row['topic_attr_id'];
+			}
+		}
+
+		$event['forum_rows'] = $forum_rows;
 	}
 
 	public function display_forums_modify_row($event)

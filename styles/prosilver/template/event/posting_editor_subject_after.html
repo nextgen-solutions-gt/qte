@@ -9,7 +9,7 @@
 		{% endif %}
 		{% if S_QTE_EMPTY %}<option value="0"{% if S_QTE_SELECTED %} selected="selected"{% endif %} style="font-weight: bold;{% if S_QTE_EMPTY %} color: #808080;{% endif %}">{{ lang('QTE_ATTRIBUTE_ADD') }}</option>{% endif %}
 		{% for attribute in attributes %}
-			<option value="{{ attribute.QTE_ID }}"{{ attribute.QTE_COLOUR }}{% if attribute.IS_SELECTED %} selected="selected"{% endif %}>{{ attribute.QTE_NAME }}{% if attribute.S_QTE_DESC %} [{{ attribute.QTE_DESC }}]{% endif %}</option>
+			<option value="{{ attribute.QTE_ID }}"{{ attribute.QTE_COLOUR }}{% if attribute.S_SELECTED %} selected="selected"{% endif %}>{{ attribute.QTE_NAME }}{% if attribute.S_QTE_DESC %} [{{ attribute.QTE_DESC }}]{% endif %}</option>
 		{% endfor %}
 		</select>
 	</dd>

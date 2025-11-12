@@ -23,12 +23,14 @@ fieldset.attribute {
 /* Imageset */
 .imageset.qte_solved {
 	background-image: url("./images/icon_topic_solved.gif");
-	padding-left: 16px;
-	padding-top: 16px;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	padding-top: 3px;
 }
 
 .imageset.qte_cancelled {
 	background-image: url("./images/icon_topic_cancel.gif");
-	padding-left: 16px;
-	padding-top: 16px;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	padding-top: 3px;
 }
